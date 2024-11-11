@@ -10,13 +10,13 @@ import vn.softwaredesign.architecture.layeredarc.repository.AccountRepository;
 public class AccountService {
     private final AccountRepository accountRepository;
 
-    public void createAccount(AccountDto accountDto) throws Exception {
+    public void createAccount(AccountDto accountDto) throws InvalidCredentialsException {
         isEmailAlreadyUsed(accountDto.email());
         var user = new Account(accountDto.name(), accountDto.password(), accountDto.email());
         accountRepository.save(user);
     }
 
-    public void login(String email, String password) throws Exception {
+    public void login(String email, String password) throws InvalidCredentialsException {
         var optionalAccount = accountRepository.findByEmail(email);
         if (optionalAccount.isPresent()) {
             var account = optionalAccount.get();
@@ -29,13 +29,13 @@ public class AccountService {
         }
     }
 
-    private void isEmailAlreadyUsed(String email) throws Exception {
+    private void isEmailAlreadyUsed(String email) throws InvalidCredentialsException {
         if (accountRepository.findByEmail(email).isPresent()) {
             throw new InvalidCredentialsException("Email address already exists");
         }
     }
 
-    private boolean isThePasswordValid(String password, String uiPassword) throws Exception {
+    private boolean isThePasswordValid(String password, String uiPassword) {
         return password.equals(uiPassword);
     }
 

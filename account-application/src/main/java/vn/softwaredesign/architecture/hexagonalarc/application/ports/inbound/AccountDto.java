@@ -1,5 +1,3 @@
 package vn.softwaredesign.architecture.hexagonalarc.application.ports.inbound;
 
-public interface AccountLogin {
-    void login(AccountLoginInput loginInput);
-}
+public record AccountDto(String name, String password, String email) {}
