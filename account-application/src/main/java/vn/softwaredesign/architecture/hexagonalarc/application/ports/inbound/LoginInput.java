@@ -1,4 +1,4 @@
 package vn.softwaredesign.architecture.hexagonalarc.application.ports.inbound;
 
 
-public record AccountLoginInput(String email, String password) {}
+public record LoginInput(String email, String password) {}
