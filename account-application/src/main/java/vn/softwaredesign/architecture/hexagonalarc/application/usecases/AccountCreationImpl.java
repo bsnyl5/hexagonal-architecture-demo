@@ -3,7 +3,7 @@ package vn.softwaredesign.architecture.hexagonalarc.application.usecases;
 import lombok.RequiredArgsConstructor;
 import vn.softwaredesign.architecture.hexagonalarc.application.ports.inbound.AccountCreation;
 import vn.softwaredesign.architecture.hexagonalarc.application.ports.inbound.AccountDto;
-import vn.softwaredesign.architecture.hexagonalarc.application.ports.outbound.AccountRepository;
+import vn.softwaredesign.architecture.hexagonalarc.domain.model.AccountRepository;
 import vn.softwaredesign.architecture.hexagonalarc.domain.model.Account;
 import vn.softwaredesign.architecture.hexagonalarc.domain.model.AccountCreationService;
 import vn.softwaredesign.architecture.hexagonalarc.domain.model.InvalidCredentialsException;

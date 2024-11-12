@@ -1,7 +1,6 @@
 package vn.softwaredesign.architecture.hexagonalarc.domain.model;
 
 import lombok.RequiredArgsConstructor;
-import vn.softwaredesign.architecture.hexagonalarc.application.ports.outbound.AccountRepository;
 
 
 @RequiredArgsConstructor

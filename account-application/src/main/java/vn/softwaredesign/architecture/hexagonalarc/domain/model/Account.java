@@ -1,8 +1,7 @@
 package vn.softwaredesign.architecture.hexagonalarc.domain.model;
 
-import vn.softwaredesign.architecture.hexagonalarc.application.ports.outbound.AccountRepository;
-
 import java.util.Objects;
+import java.util.Optional;
 
 public class Account {
     private String email;
@@ -26,6 +25,10 @@ public class Account {
 
     public void validate(AccountRepository accountRepository, ValidationNotificationHandler validationNotificationHandler) {
         (new AccountValidator(this, accountRepository, validationNotificationHandler)).validate();
+    }
+
+    public boolean verifyPassword(String password) {
+        return this.password.equals(password);
     }
 
     @Override
@@ -54,4 +57,37 @@ public class Account {
     String email() {
         return email;
     }
+
+    public static class AccountMemento {
+        private String email;
+        private String name;
+        private String password;
+
+        public AccountMemento(String email, String name, String password) {
+            this.email = email;
+            this.name = name;
+            this.password = password;
+        }
+
+        public String email() {
+            return email;
+        }
+
+        public String name() {
+            return name;
+        }
+
+        public String password() {
+            return password;
+        }
+
+        public Account restore() throws InvalidCredentialsException {
+            return new Account(this.email, this.name, this.password);
+        }
+    }
+
+    public AccountMemento createSnapshot() {
+        return new AccountMemento(this.email, this.name, this.password);
+    }
+
 }
